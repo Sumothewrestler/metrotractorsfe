@@ -1,100 +1,186 @@
-import Image from "next/image";
+// app/page.tsx
+'use client';
 
-export default function Home() {
+export default function HomePage() {
+  const sections = [
+    {
+      title: "Categories",
+      description: "Manage customer categories",
+      addLink: "/categories/add",
+      viewLink: "/categories/view",
+      bgColor: "bg-blue-500",
+      hoverColor: "hover:bg-blue-600"
+    },
+    {
+      title: "Units",
+      description: "Manage measurement units",
+      addLink: "/units/add",
+      viewLink: "/units/view",
+      bgColor: "bg-green-500",
+      hoverColor: "hover:bg-green-600"
+    },
+    {
+      title: "Stocks",
+      description: "Manage stock inventory",
+      addLink: "/stocks/add",
+      viewLink: "/stocks/view",
+      bgColor: "bg-purple-500",
+      hoverColor: "hover:bg-purple-600"
+    },
+    {
+      title: "Customers",
+      description: "Manage customer database",
+      addLink: "/customers/add",
+      viewLink: "/customers/view",
+      bgColor: "bg-red-500",
+      hoverColor: "hover:bg-red-600"
+    },
+    {
+      title: "Advance Booking",
+      description: "Manage advance bookings",
+      addLink: "/bookings/add",
+      viewLink: "/bookings/view",
+      bgColor: "bg-yellow-500",
+      hoverColor: "hover:bg-yellow-600"
+    },
+    {
+      title: "Demand",
+      description: "Manage customer demands",
+      addLink: "/demands/add",
+      viewLink: "/demands/view",
+      bgColor: "bg-indigo-500",
+      hoverColor: "hover:bg-indigo-600"
+    },
+    {
+      title: "Supply",
+      description: "Manage supplies",
+      addLink: "/supplies/add",
+      viewLink: "/supplies/view",
+      bgColor: "bg-pink-500",
+      hoverColor: "hover:bg-pink-600"
+    }
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-gray-100">
+      {/* Header */}
+      <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold text-gray-900">
+            Dashboard
+          </h1>
+        </div>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div className="px-4 py-6 sm:px-0">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {sections.map((section, index) => (
+              <div
+                key={index}
+                className="bg-white overflow-hidden shadow rounded-lg"
+              >
+                <div className={`${section.bgColor} px-4 py-5 sm:p-6`}>
+                  <h3 className="text-lg font-medium text-white">
+                    {section.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-white opacity-90">
+                    {section.description}
+                  </p>
+                </div>
+                <div className="bg-gray-50 px-4 py-4 sm:px-6">
+                  <div className="flex justify-between space-x-4">
+                    <a
+                      href={section.addLink}
+                      className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white ${section.bgColor} ${section.hoverColor} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${section.bgColor.split('-')[1]}-500`}
+                    >
+                      Add New
+                    </a>
+                    <a
+                      href={section.viewLink}
+                      className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      View All
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Quick Stats Section */}
+        <div className="mt-8 px-4 sm:px-0">
+          <div className="bg-white shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <h3 className="text-lg font-medium text-gray-900">
+                Quick Stats
+              </h3>
+              <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="bg-gray-50 px-4 py-5 rounded-lg">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Total Customers
+                  </dt>
+                  <dd className="mt-1 text-3xl font-semibold text-gray-900">
+                    0
+                  </dd>
+                </div>
+                <div className="bg-gray-50 px-4 py-5 rounded-lg">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Active Bookings
+                  </dt>
+                  <dd className="mt-1 text-3xl font-semibold text-gray-900">
+                    0
+                  </dd>
+                </div>
+                <div className="bg-gray-50 px-4 py-5 rounded-lg">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Open Demands
+                  </dt>
+                  <dd className="mt-1 text-3xl font-semibold text-gray-900">
+                    0
+                  </dd>
+                </div>
+                <div className="bg-gray-50 px-4 py-5 rounded-lg">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Pending Supplies
+                  </dt>
+                  <dd className="mt-1 text-3xl font-semibold text-gray-900">
+                    0
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        {/* Recent Activity Section */}
+        <div className="mt-8 px-4 sm:px-0">
+          <div className="bg-white shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <h3 className="text-lg font-medium text-gray-900">
+                Recent Activity
+              </h3>
+              <div className="mt-4">
+                <div className="border-t border-gray-200">
+                  <p className="py-4 text-sm text-gray-500 text-center">
+                    No recent activity
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="bg-white shadow mt-8">
+        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-sm text-gray-500">
+            © 2024 Your Company Name. All rights reserved.
+          </p>
+        </div>
       </footer>
     </div>
   );
