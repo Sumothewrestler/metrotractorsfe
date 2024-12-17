@@ -1,4 +1,3 @@
-// app/bookings/view/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -21,7 +20,6 @@ interface Booking {
 
 export default function ViewBookings() {
   const [bookings, setBookings] = useState<Booking[]>([]);
-  const [customers, setCustomers] = useState<{ [key: number]: Customer }>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,7 +47,6 @@ export default function ViewBookings() {
       }));
 
       setBookings(enrichedBookings);
-      setCustomers(customersMap);
       setLoading(false);
     } catch (error) {
       console.error('Error:', error);
